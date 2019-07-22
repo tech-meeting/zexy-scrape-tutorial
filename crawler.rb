@@ -14,6 +14,21 @@ res = http.start {
 }
 
 doc = Nokogiri::HTML.parse(res.body)
-doc.css(".kuchikomiDetail__listMiddle__impression__txt").each {|e|
-  puts e.text
+doc.css(".kuchikomiDetail__list").each {|e|
+  heading = e.css(".kuchikomiDetail__listMiddle__heading").text.strip
+  impression = e.css(".kuchikomiDetail__listMiddle__impression__txt").text.strip
+  link_url = e.css(".kuchikomiDetail__listMiddle__heading a").attribute("href")
+  satisfaction = $1.to_f if /([0-9.]+)/ =~ e.css(".kuchikomiDetail__listTop__satisfaction").text
+  price = $1.to_i if /([0-9]+)/ =~ e.css(".kuchikomiDetail__listTop__price").text
+  date = e.css(".kuchikomiDetail__listMiddle__bottomLeft").text.strip
+  profile = e.css(".kuchikomiDetail__listMiddle__bottomRight").text.strip
+
+  puts "-- kuchikomiDetail"
+  puts "heading: #{heading}"
+  puts "impression: #{impression}"
+  puts "link_url: #{link_url}"
+  puts "satisfaction: #{satisfaction}"
+  puts "price: #{price}"
+  puts "date: #{date}"
+  puts "profile: #{profile}"
 }
