@@ -5,7 +5,8 @@ require 'uri'
 require 'nokogiri'
 require "csv"
 
-client_cd = "c_7770023774"
+client_cd = ARGV[0] || "c_7770023774"
+output_filename = ARGV[1] || "kuchikomi.csv"
 
 url = URI.parse("https://wwwtst.k6.zexy.net/wedding/#{client_cd}/kuchikomi/")
 http = Net::HTTP.new(url.host, url.port)
@@ -38,7 +39,7 @@ doc.css(".kuchikomiDetail__list").each {|e|
   kuchikomi_list << kuchikomi
 }
 
-CSV.open("kuchikomi.csv","w", encoding:"cp932") {|rows|
+CSV.open(output_filename ,"w", encoding:"cp932") {|rows|
   rows << [
     "heading",
     "impression",
