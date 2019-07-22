@@ -3,6 +3,7 @@
 require 'net/http'
 require 'uri'
 require 'nokogiri'
+require "csv"
 
 client_cd = "c_7770023774"
 
@@ -12,6 +13,8 @@ http.use_ssl = true
 res = http.start {
   http.get(url.path)
 }
+
+kuchikomi_list = []
 
 doc = Nokogiri::HTML.parse(res.body)
 doc.css(".kuchikomiDetail__list").each {|e|
@@ -23,12 +26,38 @@ doc.css(".kuchikomiDetail__list").each {|e|
   date = e.css(".kuchikomiDetail__listMiddle__bottomLeft").text.strip
   profile = e.css(".kuchikomiDetail__listMiddle__bottomRight").text.strip
 
-  puts "-- kuchikomiDetail"
-  puts "heading: #{heading}"
-  puts "impression: #{impression}"
-  puts "link_url: #{link_url}"
-  puts "satisfaction: #{satisfaction}"
-  puts "price: #{price}"
-  puts "date: #{date}"
-  puts "profile: #{profile}"
+  kuchikomi = {}
+  kuchikomi[:heading] = heading
+  kuchikomi[:impression] = impression
+  kuchikomi[:link_url] = link_url
+  kuchikomi[:satisfaction] = satisfaction
+  kuchikomi[:price] = price
+  kuchikomi[:date] = date
+  kuchikomi[:profile] = profile
+
+  kuchikomi_list << kuchikomi
+}
+
+CSV.open("kuchikomi.csv","w", encoding:"cp932") {|rows|
+  rows << [
+    "heading",
+    "impression",
+    "link_url",
+    "satisfaction",
+    "price",
+    "date",
+    "profile",
+  ]
+  
+  kuchikomi_list.each {|kuchikomi|
+    rows << [
+      kuchikomi[:heading],
+      kuchikomi[:impression],
+      kuchikomi[:link_url],
+      kuchikomi[:satisfaction],
+      kuchikomi[:price],
+      kuchikomi[:date],
+      kuchikomi[:profile],
+    ]
+  }
 }
