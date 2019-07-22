@@ -2,6 +2,7 @@
 
 require 'net/http'
 require 'uri'
+require 'nokogiri'
 
 client_cd = "c_7770023774"
 
@@ -12,5 +13,7 @@ res = http.start {
   http.get(url.path)
 }
 
-puts res.code
-puts res.body
+doc = Nokogiri::HTML.parse(res.body)
+doc.css(".kuchikomiDetail__listMiddle__impression__txt").each {|e|
+  puts e.text
+}
