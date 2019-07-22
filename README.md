@@ -28,20 +28,30 @@ Tutorial Steps
 
 まずは式場のクチコミページの HTML を生のまま取得し、表示します。
 
+https://github.com/tech-meeting/zexy-scrape-tutorial/tree/master
+
 ### STEP 2
 
 STEP 1 では大量の HTML が表示されるため、その中からクチコミ本文を探すのが大変でした。
 そのため、クチコミの本文を取り出し、それだけを表示するようにします。
 
+https://github.com/tech-meeting/zexy-scrape-tutorial/tree/step-2
+
 ### STEP 3
 
 クチコミ本文以外の点数や招待人数、満足度なども含めた情報を画面に表示するようにします。
+
+https://github.com/tech-meeting/zexy-scrape-tutorial/tree/step-3
 
 ### STEP 4
 
 STEP 3 までで取得した情報を CSV ファイルに出力します。
 
+https://github.com/tech-meeting/zexy-scrape-tutorial/tree/step-4
+
 ### STEP 5
 
 STEP 4 の機能をそのままに、クライアントコードや出力先のファイル名を後から指定できるようにします。
+
+https://github.com/tech-meeting/zexy-scrape-tutorial/tree/step-5
 
