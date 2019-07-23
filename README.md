@@ -13,7 +13,7 @@ Windows の場合は Ruby Installer を使うのがもっとも手軽ですが�
 Install Nokogiri and Other Libraries
 ----
 
-このチュートリアルでは STEP 2 以降で Nokogiri という HTML/XML パーサーを使います。
+このチュートリアルでは STEP 2 以降で [Nokogiri](https://nokogiri.org/) という HTML/XML パーサーを使います。
 また、Nokogiri のインストールのために Bundler というライブラリ管理ツールを使います。
 Bundler をインストールするため、事前に下記のコマンドを実行してください (Ruby がインストールされている環境が必要) 。
 
@@ -55,3 +55,9 @@ STEP 4 の機能をそのままに、クライアントコードや出力先の�
 
 https://github.com/tech-meeting/zexy-scrape-tutorial/tree/step-5
 
+
+参考リンク
+----
+
+- Rubyのインストール : https://www.ruby-lang.org/ja/documentation/installation/
+- Nokogiri : https://nokogiri.org/
